@@ -1,0 +1,55 @@
+{
+  "name": "sharedstreets-geojson",
+  "version": "0.1.0",
+  "description": "SharedStreets GeoJSON",
+  "main": "index",
+  "files": [
+    "index.js",
+    "index.ts"
+  ],
+  "scripts": {
+    "pretest": "tsc",
+    "test": "tap test.js",
+    "posttest": "tslint index.ts --project tsconfig.json",
+    "docs": "tsc && documentation readme --shallow index.js --section=API",
+    "bench": "tsc && node bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharedstreets/sharedstreets-geojson.git"
+  },
+  "keywords": [
+    "sharedstreets",
+    "streets",
+    "shared",
+    "geojson"
+  ],
+  "author": "SharedStreets",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>",
+    "Kevin Webb <@kpwebb>",
+    "Michal Migurski <@migurski>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sharedstreets/sharedstreets-geojson/issues"
+  },
+  "homepage": "https://github.com/sharedstreets/sharedstreets-geojson#readme",
+  "devDependencies": {
+    "@types/benchmark": "*",
+    "@types/glob": "*",
+    "@types/load-json-file": "*",
+    "@types/node": "*",
+    "@types/tape": "*",
+    "@types/write-json-file": "*",
+    "benchmark": "*",
+    "documentation": "*",
+    "glob": "*",
+    "tap": "*",
+    "tape": "*",
+    "tslint": "*",
+    "typescript": "*",
+    "write-json-file": "*"
+  },
+  "dependencies": {}
+}
