@@ -36,6 +36,7 @@ For a full list of web examples, check out [SharedStreets examples](https://gith
 #### Table of Contents
 
 -   [geometry](#geometry)
+-   [intersection](#intersection)
 
 ### geometry
 
@@ -55,3 +56,22 @@ geojson // => Feature<LineString, SharedStreetsGeometry>
 ```
 
 Returns **Feature&lt;LineString, SharedStreetsGeometry>** GeoJSON LineString Feature SharedSteetsGeometry
+
+### intersection
+
+Intersection
+
+**Parameters**
+
+-   `intersect` **SharedStreetsIntersection** JSON SharedStreetsIntersection
+
+**Examples**
+
+```javascript
+const pt = [110, 45];
+const intersect = sharedstreets.intersection(pt);
+const geojson = sharedstreetsGeoJSON.intersection(intersect)));
+geojson // => Feature<Point, SharedStreetsIntersection>
+```
+
+Returns **Feature&lt;Point, SharedStreetsIntersection>** GeoJSON Point Feature SharedSteetsIntersection
