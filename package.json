@@ -52,5 +52,8 @@
     "typescript": "*",
     "write-json-file": "*"
   },
-  "dependencies": {}
+  "dependencies": {
+    "sharedstreets": "*",
+    "sharedstreets-types": "1.x"
+  }
 }
