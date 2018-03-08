@@ -45,6 +45,7 @@
     "benchmark": "*",
     "documentation": "*",
     "glob": "*",
+    "sharedstreets-pbf": "*",
     "tap": "*",
     "tape": "*",
     "tslint": "*",
