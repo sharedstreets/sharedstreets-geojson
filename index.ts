@@ -1,6 +1,6 @@
-import { Feature, lineString, LineString, point, Point } from "@turf/helpers";
+import { Feature, featureCollection, FeatureCollection, lineString, LineString, point, Point } from "@turf/helpers";
 import { lonlatsToCoords } from "sharedstreets";
-import { SharedStreetsGeometry, SharedStreetsIntersection } from "sharedstreets-types";
+import { SharedStreetsGeometry, SharedStreetsIntersection, SharedStreetsReference } from "sharedstreets-types";
 
 interface SharedStreetsGeometryGeoJSON extends Feature<LineString, SharedStreetsGeometry> {
   role: "SharedStreets:Geometry";
@@ -8,6 +8,14 @@ interface SharedStreetsGeometryGeoJSON extends Feature<LineString, SharedStreets
 
 interface SharedStreetsIntersectionGeoJSON extends Feature<Point, SharedStreetsIntersection> {
   role: "SharedStreets:Intersection";
+}
+
+interface SharedStreetsReferenceGeoJSON extends SharedStreetsReference {
+  role: "SharedStreets:Reference";
+}
+
+interface SharedStreetsGeoJSON extends FeatureCollection {
+  references: SharedStreetsReferenceGeoJSON[];
 }
 
 /**
@@ -57,4 +65,37 @@ export function intersection(intersect: SharedStreetsIntersection): SharedStreet
   const pt: any = point(coords, properties);
   pt.role = "SharedStreets:Intersection";
   return pt;
+}
+
+/**
+ * Reference
+ *
+ * @param {SharedStreetsReference} intersect JSON SharedStreetsReference
+ * @returns {SharedStreetsReference} SharedSteetsIntersection with Role
+ */
+export function reference(ref: SharedStreetsReference): SharedStreetsReferenceGeoJSON {
+  const data: any = ref;
+  data.role = "SharedStreets:Reference";
+  return data;
+}
+
+/**
+ * GeoJSON
+ *
+ * @param {Array<SharedStreetsGeometry>} geometries An Array of SharedStreetsGeometry
+ * @param {Array<SharedStreetsIntersection>} intersections An Array of SharedStreetsIntersection
+ * @param {Array<SharedStreetsReference>} references An Array of SharedStreetsReference
+ * @returns {FeatureCollection} SharedStreets GeoJSON
+ */
+export function geojson(
+  geometries: SharedStreetsGeometry[],
+  intersections: SharedStreetsIntersection[],
+  references: SharedStreetsReference[],
+): SharedStreetsGeoJSON {
+  const data: any = featureCollection([]);
+
+  geometries.forEach((item) => data.features.push(geometry(item)));
+  intersections.forEach((item) => data.features.push(intersection(item)));
+  references.forEach((item) => data.references.push(reference(item)));
+  return data;
 }
